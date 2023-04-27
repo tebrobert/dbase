@@ -1,0 +1,3 @@
+FROM postgres:14.3
+ENV POSTGRES_PASSWORD=Stt-6789
+
