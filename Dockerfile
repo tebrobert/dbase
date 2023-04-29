@@ -1,8 +1,12 @@
 FROM postgres:14.3
-#FROM postgrest/postgrest:v11.0.0
+
 ENV POSTGRES_PASSWORD=Stt-6789
-EXPOSE 5432
+
 RUN echo create table test \(id int\) ';' >> /docker-entrypoint-initdb.d/1.sql
 RUN echo insert into test values \(555\) ';' >> /docker-entrypoint-initdb.d/1.sql
-#CMD psql -U postgres -c "create table test (id int); insert into test values (333);"
+
+#RUN echo port 5555 >> /var/lib/postgresql/data/postgresql.conf
+RUN echo 'echo port 5555 >> /var/lib/postgresql/data/postgresql.conf' >> /docker-entrypoint-initdb.d/1.sh
+
+RUN apt-get update && apt-get install -y default-jre
 
